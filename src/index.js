@@ -19,8 +19,10 @@ const projectRoot = dirname(__dirname); // Go up one level from src/ to project 
  */
 class NetSuiteMCPServer {
   constructor() {
-    // Use absolute path for sessions directory
-    const sessionsPath = join(projectRoot, 'sessions');
+    // One sessions dir per account so prod and sandbox instances sharing the
+    // same install (npx cache) don't overwrite each other's tokens.
+    const account = (process.env.NETSUITE_ACCOUNT_ID || 'default').replace(/[^\w-]/g, '_');
+    const sessionsPath = join(projectRoot, 'sessions', account);
 
     // Get callback port from environment or use default
     const callbackPort = parseInt(process.env.OAUTH_CALLBACK_PORT || '55182', 10);
