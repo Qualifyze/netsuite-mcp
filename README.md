@@ -304,7 +304,7 @@ The exact tools available depend on your NetSuite account configuration.
 5. **Authorization**: User approves access
 6. **Callback**: NetSuite redirects to `http://localhost:55182/callback` with authorization code
 7. **Token Exchange**: Server exchanges code for access/refresh tokens (public client pattern)
-8. **Session Storage**: Tokens stored in `sessions/session.json` (persists across restarts)
+8. **Session Storage**: Tokens stored in `sessions/<NETSUITE_ACCOUNT_ID>/session.json` (persists across restarts)
 9. **Auto-Refresh**: Tokens automatically refresh when expiring (5-minute buffer)
 
 ## Troubleshooting
